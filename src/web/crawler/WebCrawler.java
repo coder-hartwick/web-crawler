@@ -28,7 +28,6 @@ public class WebCrawler {
             public void run() {
                 new MainGraphics().createAndShowGUI();
             }
-
         });
     }
 }

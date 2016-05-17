@@ -3,7 +3,9 @@ package web.crawler.gui;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 
 
@@ -24,6 +26,14 @@ public class MainGraphics {
 
     /** The main panel that holds graphical components in the application. */
     private JPanel      windowPanel;
+
+
+    /** The JList that contains the collected links. */
+    private JList       collectedLinksList;
+
+
+    /** Buttons to change the working status of the web crawler. */
+    private JButton     startButton, stopButton, pauseButton;
 
 
     /**
