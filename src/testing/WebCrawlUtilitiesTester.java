@@ -1,6 +1,5 @@
 package testing;
 
-import errorreport.ErrorReport;
 import web.crawler.crawling.CrawlerManager;
 
 
