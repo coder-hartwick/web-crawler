@@ -32,7 +32,7 @@ public class UserAgentAssigner {
      * Creates a new instance of the UserAgentAssigner class.
      *
      * @param filePath      The path to the file containing the user
-     *                              agents.
+     *                      agents.
      * @param amountToLoad  The amount of user agents to load.
      */
     public UserAgentAssigner(String filePath, int amountToLoad) {
@@ -89,5 +89,4 @@ public class UserAgentAssigner {
         removedAgents.add(userAgent);
         return userAgent;
     }
-
 }

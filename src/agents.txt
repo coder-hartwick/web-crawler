@@ -1,0 +1,12 @@
+Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.1a) Gecko/20020610[::]
+Mozilla/5.0 (Windows; U; WinNT4.0; en-US; rv:1.1a) Gecko/20020611[::]
+Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.1a) Gecko/20020611[::]
+Mozilla/5.0 (Windows; U; Win98; en-US; rv:1.1a) Gecko/20020611[::]
+Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-US; rv:1.1a) Gecko/20020610[::]
+Mozilla/5.0 (Windows; U; WinNT4.0; en-US; rv:1.1a) Gecko/20020611[::]
+Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.1a) Gecko/20020611[::]
+Mozilla/5.0 (X11; U; SunOS sun4u; en-US; rv:1.1) Gecko/20020925[::]
+Mozilla/5.0 (X11; U; SunOS sun4u; en-US; rv:1.1) Gecko/20020909[::]
+Mozilla/5.0 (X11; U; SunOS sun4u; en-US; rv:1.1) Gecko/20020827[::]
+Mozilla/5.0 (X11; U; Linux ppc; en-US; rv:1.1) Gecko/20020927[::]
+Mozilla/5.0 (X11; U; Linux i686; it-IT; rv:1.1) Gecko/20020826

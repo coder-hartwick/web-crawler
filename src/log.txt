@@ -1,0 +1,559 @@
+Crawling page: http://www.randomthingstodo.com/
+Crawling page: http://www.huffingtonpost.com/
+Crawling page: https://www.random.org/
+Crawling page: http://www.randomthingstodo.com/best
+Crawling page: http://www.randomthingstodo.com/newest
+Crawling page: http://www.randomthingstodo.com/submit
+Crawling page: http://www.huffingtonpost.com/?m=true
+Crawling page: http://www.randomthingstodo.com/random
+Crawling page: http://www.randomthingstodo.com/watch-penguins-in-real-time
+Crawling page: http://www.randomthingstodo.com/16-prank-call-responses-for-telemarketers
+Crawling page: http://www.randomthingstodo.com/25-hilarious-mcdonalds-pranks
+Crawling page: http://www.randomthingstodo.com/random/2
+Crawling page: http://pyritemedia.com/
+Crawling page: https://www.random.org/#games
+Crawling page: http://pyritemedia.com#contact
+Crawling page: http://www.facebook.com/
+Crawling page: http://m.huffingtonpost.com
+Crawling page: https://www.random.org/quick-pick/
+Crawling page: https://www.random.org/keno/
+Crawling page: http://www.huffingtonpost.com/news/twitter/
+Crawling page: https://www.random.org/coins/
+Crawling page: http://itunes.apple.com/us/app/the-huffington-post/id306621789?mt=8
+Crawling page: http://www.twitter.com/
+Crawling page: https://www.random.org/dice/
+Crawling page: https://play.google.com/store/apps/details?id=com.huffingtonpost.android
+Crawling page: https://www.random.org/playing-cards/
+Crawling page: https://www.random.org/birdie-funds/
+Crawling page: https://www.random.org/#numbers
+Crawling page: http://www.huffingtonpost.com/big-news/#homepage
+Crawling page: https://www.random.org/integers/
+Crawling page: http://www.randomthingstodo.com/<br />
+<b>Warning</b>:  Illegal string offset 'url' in <b>/home/randomthingstodo/public_html/includes/footer.php</b> on line <b>11</b><br />
+h
+Crawling page: http://www.randomthingstodo.com/terms
+Crawling page: https://www.random.org/sequences/
+Crawling page: http://www.huffingtonpost.com/social/
+Crawling page: http://www.randomthingstodo.com/privacy
+Crawling page: https://www.random.org/integer-sets/
+Crawling page: http://www.huffingtonpost.com/users/preferences/
+Crawling page: http://www.randomthingstodo.com/25-shortest-jokes-ever
+Crawling page: http://www.randomthingstodo.com/best/2
+Crawling page: https://www.random.org/gaussian-distributions/
+Crawling page: http://www.randomthingstodo.com/newest/2
+Crawling page: https://www.random.org/decimal-fractions/
+Crawling page: http://www.randomthingstodo.com/h
+Crawling page: http://15-things-to-do-with-friends
+Crawling page: https://www.random.org/bytes/
+Crawling page: https://www.random.org/#lists
+Crawling page: http://18-dumb-things-to-do-at-walmart
+Crawling page: http://www.huffingtonpost.com/users/logout/?referer=%2F
+Crawling page: https://www.random.org/lists/
+Crawling page: https://www.random.org/strings/
+Crawling page: http://www.huffingtonpost.com/?country=AR
+Crawling page: http://15-socially-awkward-things-to-do-today
+Crawling page: https://www.random.org/passwords/
+Crawling page: https://www.random.org/clock-times/
+Crawling page: http://www.randomthingstodo.com/video
+Crawling page: http://18-prank-call-ideas
+Crawling page: https://www.random.org/calendar-dates/
+Crawling page: http://www.randomthingstodo.com/call
+Crawling page: http://16-funny-movie-theater-prank-ideas
+Crawling page: https://www.random.org/geographic-coordinates/
+Crawling page: http://www.huffingtonpost.com/?country=AU
+Crawling page: http://16-prank-call-responses-for-telemarketers
+Crawling page: https://www.random.org/bitmaps/
+Crawling page: http://www.randomthingstodo.com/mcdonald
+Crawling page: http://chatwithyourself.com/watch/
+Crawling page: https://www.random.org/colors/hex
+Crawling page: https://www.random.org/files/
+Crawling page: http://www.huffingtonpost.com/?country=BR
+Crawling page: http://www.randomthingstodo.com/random/1
+Crawling page: http://www.randomthingstodo.com/random/3
+Crawling page: https://www.random.org/jazz-scales/
+Crawling page: http://www.randomthingstodo.com/random/<br />
+<b>Warning</b>:  Illegal string offset 'url' in <b>/home/randomthingstodo/public_html/includes/footer.php</b> on line <b>11</b><br />
+h
+Crawling page: http://www.thesearethoughts.com/
+Crawling page: https://www.random.org/audio-noise/
+Crawling page: http://www.huffingtonpost.com/?country=CA
+Crawling page: https://www.random.org/lessness/
+Crawling page: https://www.random.org/#draws
+Crawling page: http://www.sugartoast.com/
+Crawling page: http://www.huffingtonpost.com/?country=DE
+Crawling page: https://www.random.org/faq/#Q3.1
+Crawling page: http://www.chatwithyourself.com/
+Crawling page: http://www.randomgamebutton.com/
+Crawling page: http://www.punsaurus.com/
+Crawling page: https://www.random.org/draws/
+Crawling page: http://pyritemedia.com/terms.html
+Crawling page: http://pyritemedia.com/privacy.html
+Crawling page: http://www.huffingtonpost.com/?country=ES
+Crawling page: https://www.facebook.com/
+Crawling page: https://www.random.org/guides/draws/
+Crawling page: https://www.random.org/guides/video1/
+Crawling page: https://www.facebook.com/recover/initiate?lwv=110
+Crawling page: https://www.random.org/draws/pricing/
+Crawling page: https://www.facebook.com/#
+Crawling page: https://www.random.org/draws/records/
+Crawling page: http://www.huffingtonpost.com/?country=FR
+Crawling page: https://www.random.org/draws/description/
+Crawling page: https://www.random.org/faq/#S5
+Crawling page: https://www.facebook.com/legal/terms
+Crawling page: https://www.random.org/#tools
+Crawling page: https://www.facebook.com/about/privacy
+Crawling page: https://www.random.org/widgets/
+Crawling page: https://www.facebook.com/help/cookies
+Crawling page: http://www.huffingtonpost.com/?country=GR
+Crawling page: https://www.facebook.com/pages/create/?ref_type=registration_form
+Crawling page: https://api.random.org/
+Crawling page: https://es-la.facebook.com/
+Crawling page: https://www.random.org/clients/http/
+Crawling page: https://fr-fr.facebook.com/
+Crawling page: https://www.random.org/clients/
+Crawling page: https://www.random.org/banned-hosts/
+Crawling page: https://www.random.org/#statistics
+Crawling page: https://www.random.org/statistics/
+Crawling page: https://zh-cn.facebook.com/
+Crawling page: http://www.huffingtonpost.com/?country=IN
+Crawling page: https://www.random.org/statistics/browser/
+Crawling page: https://www.random.org/analysis/
+Crawling page: https://www.random.org/bit-tally/
+Crawling page: https://www.random.org/quota/
+Crawling page: http://www.huffingtonpost.com/?country=IT
+Crawling page: https://www.random.org/testimonials/
+Crawling page: http://www.huffingtonpost.com/?country=JP
+Crawling page: http://www.huffingtonpost.com/?country=KR
+Crawling page: http://www.huffingtonpost.com/?country=MG
+Crawling page: http://www.huffingtonpost.com/?country=UK
+Crawling page: http://www.huffingtonpost.com/?country=US
+Crawling page: https://twitter.com/HuffingtonPost
+Crawling page: http://www.huffingtonpost.com/politics/
+Crawling page: http://www.huffingtonpost.com/2016/05/16/newt-gingrich-donald-trump-vice-president_n_9998314.html?ir=Politics
+Crawling page: http://www.huffingtonpost.com/2016/05/17/trump-hate-crime_n_10004020.html?ir=Politics
+Crawling page: http://www.huffingtonpost.com/2016/05/16/harry-reid-alan-grayson_n_9996750.html?ir=Politics
+Crawling page: http://www.huffingtonpost.com/2016/05/17/donald-trump-kim-jong-un_n_10012014.html?ir=Politics
+Crawling page: http://www.huffingtonpost.com/2016/05/17/bernie-sanders-nevada-dem-chair_n_10007512.html?ir=Politics
+Crawling page: http://elections.huffingtonpost.com/pollster
+Crawling page: http://elections.huffingtonpost.com/2016/primaries
+Crawling page: http://www.huffingtonpost.com/news/16-and-president/
+Crawling page: http://www.huffingtonpost.com/news/trail-to-the-chief/
+Crawling page: http://www.huffingtonpost.com/entry/candidate-confessional-election-losses_us_56901d6ce4b0c8beacf704c8
+Crawling page: http://www.huffingtonpost.com/world/
+Crawling page: http://www.huffingtonpost.com/green/
+Crawling page: http://www.huffingtonpost.com/black-voices/
+Crawling page: http://www.huffingtonpost.com/latino-voices/
+Crawling page: http://www.huffingtonpost.com/queer-voices/
+Crawling page: http://www.huffingtonpost.com/entertainment/
+Crawling page: http://www.huffingtonpost.com/2016/05/17/kim-kardashian-vows-to-keep-breaking-the-internet-with-nude-selfies_n_10004008.html?ir=Entertainment
+Crawling page: http://www.huffingtonpost.com/2016/05/16/emilia-clarke-nude-scene-game-of-thrones_n_9991230.html?ir=Entertainment
+Crawling page: http://www.huffingtonpost.com/2016/05/16/angelina-jolie-has-the-perfect-response-to-donald-trumps-anti-muslim-rhetoric_n_9994188.html?ir=Entertainment
+Crawling page: http://www.huffingtonpost.com/2016/05/17/jk-rowling-donald-trump-defends_n_10001762.html?ir=Entertainment
+Crawling page: http://www.huffingtonpost.com/2016/05/16/fox-rocky-horror-picture-show-teaser_n_9998882.html?ir=Entertainment
+Crawling page: http://www.huffingtonpost.com/celebrity/
+Crawling page: http://www.huffingtonpost.com/tv/
+-------------------------------
+Information:
+http://www.randomthingstodo.com/
+[number, school, java, password]
+[0, 1, 0, 0]
+-------------------------------
+Information:
+http://www.randomthingstodo.com/16-prank-call-responses-for-telemarketers
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+http://www.randomthingstodo.com/random/2
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+http://www.facebook.com/
+[number, school, java, password]
+[0, 0, 0, 2]
+-------------------------------
+Information:
+http://www.twitter.com/
+[number, school, java, password]
+[0, 0, 0, 1]
+-------------------------------
+Information:
+http://www.randomthingstodo.com/best/2
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+http://www.randomthingstodo.com/random/3
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+http://pyritemedia.com/privacy.html
+[number, school, java, password]
+[0, 0, 0, 1]
+-------------------------------
+Information:
+https://www.facebook.com/
+[number, school, java, password]
+[0, 0, 0, 1]
+-------------------------------
+Information:
+https://www.facebook.com/recover/initiate?lwv=110
+[number, school, java, password]
+[0, 0, 0, 1]
+-------------------------------
+Information:
+https://www.facebook.com/#
+[number, school, java, password]
+[0, 0, 0, 2]
+-------------------------------
+Information:
+https://www.facebook.com/legal/terms
+[number, school, java, password]
+[2, 0, 0, 2]
+-------------------------------
+Information:
+https://www.facebook.com/about/privacy
+[number, school, java, password]
+[2, 0, 0, 1]
+-------------------------------
+Information:
+https://www.facebook.com/help/cookies
+[number, school, java, password]
+[0, 0, 0, 2]
+-------------------------------
+Information:
+https://www.facebook.com/pages/create/?ref_type=registration_form
+[number, school, java, password]
+[0, 0, 0, 2]
+-------------------------------
+Information:
+https://www.random.org/
+[number, school, java, password]
+[3, 1, 0, 1]
+-------------------------------
+Information:
+https://www.random.org/#games
+[number, school, java, password]
+[3, 1, 0, 1]
+-------------------------------
+Information:
+https://www.random.org/quick-pick/
+[number, school, java, password]
+[2, 0, 1, 0]
+-------------------------------
+Information:
+https://www.random.org/keno/
+[number, school, java, password]
+[3, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/coins/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/dice/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/playing-cards/
+[number, school, java, password]
+[3, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/birdie-funds/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/#numbers
+[number, school, java, password]
+[3, 1, 0, 1]
+-------------------------------
+Information:
+https://www.random.org/integers/
+[number, school, java, password]
+[3, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/sequences/
+[number, school, java, password]
+[3, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/integer-sets/
+[number, school, java, password]
+[4, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/gaussian-distributions/
+[number, school, java, password]
+[3, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/decimal-fractions/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/bytes/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/#lists
+[number, school, java, password]
+[3, 1, 0, 1]
+-------------------------------
+Information:
+https://www.random.org/lists/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/strings/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/passwords/
+[number, school, java, password]
+[2, 0, 0, 2]
+-------------------------------
+Information:
+https://www.random.org/clock-times/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/calendar-dates/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/geographic-coordinates/
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/bitmaps/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/colors/hex
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/files/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/jazz-scales/
+[number, school, java, password]
+[3, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/audio-noise/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/lessness/
+[number, school, java, password]
+[0, 0, 0, 1]
+-------------------------------
+Information:
+https://www.random.org/#draws
+[number, school, java, password]
+[3, 1, 0, 1]
+-------------------------------
+Information:
+https://www.random.org/faq/#Q3.1
+[number, school, java, password]
+[29, 0, 0, 2]
+-------------------------------
+Information:
+https://www.random.org/draws/
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/guides/draws/
+[number, school, java, password]
+[3, 0, 0, 1]
+-------------------------------
+Information:
+https://www.random.org/guides/video1/
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/draws/pricing/
+[number, school, java, password]
+[5, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/draws/records/
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/draws/description/
+[number, school, java, password]
+[3, 0, 0, 2]
+-------------------------------
+Information:
+https://www.random.org/faq/#S5
+[number, school, java, password]
+[29, 0, 0, 2]
+-------------------------------
+Information:
+https://www.random.org/#tools
+[number, school, java, password]
+[3, 1, 0, 1]
+-------------------------------
+Information:
+https://www.random.org/widgets/
+[number, school, java, password]
+[3, 0, 0, 0]
+-------------------------------
+Information:
+https://api.random.org/
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/clients/http/
+[number, school, java, password]
+[17, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/clients/
+[number, school, java, password]
+[3, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/banned-hosts/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/#statistics
+[number, school, java, password]
+[3, 1, 0, 1]
+-------------------------------
+Information:
+https://www.random.org/statistics/
+[number, school, java, password]
+[5, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/statistics/browser/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/analysis/
+[number, school, java, password]
+[18, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/bit-tally/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/quota/
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+https://www.random.org/testimonials/
+[number, school, java, password]
+[2, 0, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/
+[number, school, java, password]
+[0, 6, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/?m=true
+[number, school, java, password]
+[0, 6, 0, 0]
+-------------------------------
+Information:
+http://m.huffingtonpost.com
+[number, school, java, password]
+[0, 6, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/big-news/#homepage
+[number, school, java, password]
+[0, 1, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/users/preferences/
+[number, school, java, password]
+[0, 6, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/?country=AU
+[number, school, java, password]
+[0, 2, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/?country=CA
+[number, school, java, password]
+[0, 3, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/?country=IN
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/?country=US
+[number, school, java, password]
+[0, 6, 0, 0]
+-------------------------------
+Information:
+https://twitter.com/HuffingtonPost
+[number, school, java, password]
+[0, 0, 0, 2]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/2016/05/17/trump-hate-crime_n_10004020.html?ir=Politics
+[number, school, java, password]
+[1, 0, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/2016/05/17/bernie-sanders-nevada-dem-chair_n_10007512.html?ir=Politics
+[number, school, java, password]
+[3, 0, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/world/
+[number, school, java, password]
+[0, 2, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/green/
+[number, school, java, password]
+[0, 1, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/black-voices/
+[number, school, java, password]
+[0, 2, 0, 0]
+-------------------------------
+Information:
+http://www.huffingtonpost.com/latino-voices/
+[number, school, java, password]
+[0, 2, 0, 0]
