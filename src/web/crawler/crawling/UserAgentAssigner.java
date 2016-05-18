@@ -1,5 +1,6 @@
 package web.crawler.crawling;
 
+import errorreport.ErrorReport;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -38,10 +39,8 @@ public class UserAgentAssigner {
     public UserAgentAssigner(String filePath, int amountToLoad) {
         try {
             loadUserAgents(filePath, amountToLoad);
-        } catch (IOException err) {
-            // Remove this system out println later.
-            System.out.println("An error occured when loading the user agents.");
-            err.printStackTrace(); // Create an error report here.
+        } catch (IOException err) {            
+            ErrorReport.createErrorReport(err);
         }
     }
 

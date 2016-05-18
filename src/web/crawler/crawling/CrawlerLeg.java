@@ -1,5 +1,6 @@
 package web.crawler.crawling;
 
+import errorreport.ErrorReport;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,32 +54,38 @@ public class CrawlerLeg {
 
 
     /**
-     * Scans a page for links and search query matches.
-     *
-     * @param link  The link of the page to scan.
-     * @return      Whether the search query was found or not.
+     * Connects to the web page using the specified user agent, gets the 
+     * document, and processes the document's content. It will first call a 
+     * method to get the instances of each search query in the document and then
+     * gather links from the document. If the document does not contain any of
+     * the search queries, it will return false; it will return true otherwise.
+     * If the link is empty, it will return false. If the connection could not 
+     * receive the web page, it will return false.
+     * 
+     * @param link  The link to the page to process.
+     * @return      True if the page contains a search query one or more times.
+     *              False if the link was empty, the web page could not be
+     *              received, or if all search queries were not found.
      */
     public boolean crawl(String link) {
         System.out.println("Crawling page: "+link);
-//        QuickWrite.writeToFile("Crawling page: "+link);
+
         try {            
             
             if(link.isEmpty()) {
-//                System.out.println("Blank link");
                 return false;
             }
             
-            // Get a connection to the web page and get the document.
+            // Try and get the document.
             Connection con = Jsoup.connect(link).userAgent(userAgent);            
             Document doc = con.get();
             if(con.response().statusCode() != 200) {
-//                System.out.println("Could not recieve web page. . .");
                 return false;
             }                        
             
-            searchDocument(doc);    // Search the document.
+            searchDocument(doc);
 
-            // Get every link on the page and add it to the links list.
+            // Get the links on the page.
             Elements linksOnPage = doc.select("a[href]");
             for(Element e : linksOnPage) {
                 links.add(e.absUrl("href"));
@@ -90,11 +97,8 @@ public class CrawlerLeg {
             }
             
             return false;
-        } catch (IOException err) {
-            
-            // Remove this system out println later.
-            System.out.println("Web Crawler experienced an error while crawling");
-            err.printStackTrace();  // Create an error report here.
+        } catch (IOException err) {            
+            ErrorReport.createErrorReport(err);
             return false;
         }
     }
@@ -109,6 +113,7 @@ public class CrawlerLeg {
         occurrencesOfWords = new int[queries.length];
         
         if(doc != null && doc.body() != null) {
+            
             // Find each occurrence of the word.
             for(int i = 0; i < queries.length; i++) {
                 occurrencesOfWords[i] = 0;

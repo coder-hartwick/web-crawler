@@ -1,5 +1,6 @@
 package testing;
 
+import errorreport.ErrorReport;
 import web.crawler.crawling.CrawlerManager;
 
 
@@ -13,7 +14,7 @@ public class WebCrawlUtilitiesTester {
 
     
     /**
-     * Main method for the web crawler testing bot.
+     * Main method for the web crawler testing application.
      * 
      * @param args  Command line arguments.
      */

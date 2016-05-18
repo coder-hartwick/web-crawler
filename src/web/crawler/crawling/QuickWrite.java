@@ -7,13 +7,19 @@ import java.io.PrintWriter;
 
 
 /**
- *
+ * Writes to a file located at "src/log.txt". 
  *
  * @author Jordan Hartwick
  * May 17, 2016
  */
 public class QuickWrite {  
     
+    
+    /**
+     * Writes to a file located at "src/log.txt".
+     * 
+     * @param message   The message to write.
+     */
     public static void writeToFile(String message) {
         try {
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("src/log.txt", true)));

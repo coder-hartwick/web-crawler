@@ -1,7 +1,7 @@
 package web.crawler.crawling;
 
+import errorreport.ErrorReport;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -152,13 +152,12 @@ public class CrawlerManager implements Runnable {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException err) {
-                err.printStackTrace();
+                ErrorReport.createErrorReport(err);
             }
         }
         
         for(InformationPackage p : infoPackages) {
             System.out.println(p.toString());
-//            QuickWrite.writeToFile(p.toString());
         }
     }
 
