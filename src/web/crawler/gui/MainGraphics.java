@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import javax.swing.AbstractAction;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -40,14 +41,8 @@ public class MainGraphics {
     /** The main panel that holds graphical components in the application. */
     private JPanel      windowPanel;
 
-
-    /** The JList that contains the collected links. */
-    private JList       collectedLinksList;
-
-
-    /**
-     * The tool bar that holds the buttons.
-     */
+    
+    /** The tool bar that holds the buttons. */
     private JToolBar    toolBar;
 
 
@@ -60,8 +55,8 @@ public class MainGraphics {
 
 
     /**
-     * Displays information contained in the InformationPackage that is realated
-     * to the item in the valid websites list.
+     * Displays the content contained in the InformationPackage that is related
+     * to the selected item in the valid websites list.
      */
     private JTextArea   quickInfoTextArea;
 
@@ -76,12 +71,16 @@ public class MainGraphics {
      * The split panes to help organize the layout of the UI.
      */
     private JSplitPane  northSouth, eastWest;
-    
-    
+
+
     /** Controls input events from this class' components. */
     private Controller  controller;
 
 
+    /** The ListModel for the list containing the valid site links. */
+    private DefaultListModel listModel;
+    
+    
     /**
      * The MainGraphics constructor method will instantiate the classes needed
      * to carry out web crawling operations.
@@ -90,7 +89,7 @@ public class MainGraphics {
 
 
     /**
-     * Creates and shows the UI to the user.
+     * Creates and shows the GUI to the user.
      */
     public void createAndShowGUI() {
         try {
@@ -114,12 +113,12 @@ public class MainGraphics {
             }
         });
 
-        controller = new Controller();
-
         createButtons();
         setupConsole();
         createQuickInfoAreaAndList();
         addComponents();
+        
+        controller = new Controller(listModel);
 
         windowFrame.setContentPane(windowPanel);
         windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -141,7 +140,7 @@ public class MainGraphics {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.setupAndStartCrawler();
+                controller.setupWebCrawler();
             }
         });
 
@@ -162,7 +161,7 @@ public class MainGraphics {
 
 
     /**
-     * Sets up the console. Redirects the systems output stream to the console 
+     * Sets up the console. Redirects the systems output stream to the console
      * text area.
      */
     private void setupConsole() {
@@ -171,40 +170,34 @@ public class MainGraphics {
 
 //        redirectOutputStream();
     }
-    
-    
+
+
     /**
-     * Creates the quick info text area and the list that will contain valid 
-     * website links. Right now, the list is populated with items that all say 
+     * Creates the quick info text area and the list that will contain valid
+     * website links. Right now, the list is populated with items that all say
      * Hello.
      */
     private void createQuickInfoAreaAndList() {
         quickInfoTextArea = new JTextArea(5,15);
-        validWebsitesList = new JList();
-                
-        String[] data = {
-            "Hello","Hello","Hello","Hello","Hello","Hello","Hello","Hello",
-            "Hello","Hello","Hello","Hello","Hello","Hello","Hello","Hello",
-            "Hello","Hello","Hello","Hello","Hello","Hello","Hello","Hello"
-        };
-        
-        validWebsitesList.setListData(data);
-        
+
+        listModel = new DefaultListModel();
+        validWebsitesList = new JList(listModel);
+
         eastWest = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         eastWest.setLeftComponent(new JScrollPane(quickInfoTextArea));
         eastWest.setRightComponent(new JScrollPane(validWebsitesList));
-    }        
-    
-    
+    }
+
+
     /**
-     * Adds the console to the bottom of the split pane and then the 
+     * Adds the console to the bottom of the split pane and then the
      */
     private void addComponents() {
         northSouth = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 
         northSouth.setTopComponent(eastWest);
         northSouth.setBottomComponent(new JScrollPane(consoleArea));
-        
+
         windowPanel.add(northSouth, BorderLayout.CENTER);
     }
 

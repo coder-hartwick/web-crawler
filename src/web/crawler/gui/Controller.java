@@ -1,5 +1,7 @@
 package web.crawler.gui;
 
+
+import javax.swing.DefaultListModel;
 import web.crawler.crawling.CrawlerManager;
 
 
@@ -16,15 +18,28 @@ public class Controller {
     private CrawlerManager crawlerManager;
     
     
-    /** The constructor method for the Controller class. */
-    public Controller() {}
+    /** 
+     * This list model is used to update the values in the valid websites list.
+     */
+    private DefaultListModel listModel;
     
     
     /**
-     * Sets up the crawler and and starts it. 
+     * The constructor method for the Controller class.
+     * 
+     * @param listModel     The list model to update when crawling websites.
      */
-    public void setupAndStartCrawler() {
-        
+    public Controller(DefaultListModel listModel) {
+        this.listModel = listModel;
+    }
+    
+    
+    /**
+     * What this method does is still being worked on. However, it will still 
+     * display the dialog that is required for web crawler setup.
+     */
+    public void setupWebCrawler() {
+        new CrawlerSetupDialog(null, true);
     }
     
     
@@ -32,6 +47,6 @@ public class Controller {
      * Stops the web crawling operations.
      */
     public void stopWebCrawler() {
-        
+//        crawlerManager.stopCrawlers();
     }
 }

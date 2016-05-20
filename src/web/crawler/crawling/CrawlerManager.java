@@ -25,25 +25,25 @@ public class CrawlerManager implements Runnable {
 
 
     /** Contains the links that contain the search query. */
-    private static Set<String> validLinks = new HashSet<>(); 
-    
-    
+    private static Set<String> validLinks = new HashSet<>();
+
+
     /** Contains all of the information packages. */
     private static List<InformationPackage> infoPackages = new ArrayList<>();
-    
+
 
     /** All of the crawler threads belong to this thread group. */
     private ThreadGroup crawlerThreadGroup;
 
 
     /** Contains all of the crawler threads. */
-    private Thread[]    crawlerThreads;
+    private Thread[] crawlerThreads;
 
-    
+
     /** The UserAgentAssigner to assign user agents to the crawler classes. */
     private UserAgentAssigner uas;
 
-    
+
     /**
      * Creates a new instance of the CrawlerManager class.
      *
@@ -53,14 +53,14 @@ public class CrawlerManager implements Runnable {
      */
     public CrawlerManager(String[] queries, String[] startingLinks, int amountToScan) {
         uas = new UserAgentAssigner("src/agents.txt", 7);
-        
-        crawlerThreadGroup = new ThreadGroup("thread_group");        
-        
+
+        crawlerThreadGroup = new ThreadGroup("thread_group");
+
         crawlerThreads = new Thread[startingLinks.length];
         for(int i = 0; i < startingLinks.length; i++) {
             crawlerThreads[i] = new Thread(crawlerThreadGroup,
                                             new Crawler(queries, startingLinks[i],
-                                                        uas.getUserAgent(), 
+                                                        uas.getUserAgent(),
                                                         amountToScan));
         }
     }
@@ -111,28 +111,8 @@ public class CrawlerManager implements Runnable {
     public static void addValidLink(String link) {
         validLinks.add(link);
     }
-    
-    
-    /**
-     * Adds a collection of InformationPackages to the infoPackages list.
-     * 
-     * @param c The collection to add to the list.
-     */
-    public static void addAllInformationPackages(Collection<? extends InformationPackage> c) {
-        infoPackages.addAll(c);
-    }
-    
 
-    /**
-     * Returns the list containing the InformationPackages.
-     * 
-     * @return  The list containing the InformationPackages.
-     */
-    public static List<InformationPackage> getAllInformationPackages() {
-        return infoPackages;
-    }
 
-    
     /**
      * Returns whether or not a link has already been scanned.
      *
@@ -142,7 +122,27 @@ public class CrawlerManager implements Runnable {
     public static boolean checkForScannedLink(String link) {
         return linksScanned.contains(link);
     }
-    
+
+
+    /**
+     * Adds a collection of InformationPackages to the infoPackages list.
+     *
+     * @param c The collection to add to the list.
+     */
+    public static void addAllInformationPackages(Collection<? extends InformationPackage> c) {
+        infoPackages.addAll(c);
+    }
+
+
+    /**
+     * Returns the list containing the InformationPackages.
+     *
+     * @return  The list containing the InformationPackages.
+     */
+    public static List<InformationPackage> getAllInformationPackages() {
+        return infoPackages;
+    }
+
 
     @Override
     public void run() {
@@ -155,10 +155,9 @@ public class CrawlerManager implements Runnable {
                 ErrorReport.createErrorReport(err);
             }
         }
-        
+
         for(InformationPackage p : infoPackages) {
             System.out.println(p.toString());
         }
     }
-
 }
