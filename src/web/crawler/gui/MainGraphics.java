@@ -5,9 +5,6 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import javax.swing.AbstractAction;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -18,7 +15,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -50,51 +46,67 @@ public class MainGraphics {
     private JButton     startButton, stopButton;
 
 
-    /** The JTextArea that displays console output. */
-    private JTextArea   consoleArea;
+    /**
+     * This is the console area that will display output as the web crawling 
+     * program is running. Think of it as a log area.
+     */
+    private static JTextArea   consoleArea;
 
 
     /**
-     * Displays the content contained in the InformationPackage that is related
-     * to the selected item in the valid websites list.
+     * When a list item in the valid site list is clicked on, the text of this
+     * JTextArea will be set to the content in the InformationPackage that is
+     * related to the list item that was clicked on. Each list item has an 
+     * InformationPackage related to it.
+     * 
+     * @see web.crawler.crawling.InformationPackage
      */
     private JTextArea   quickInfoTextArea;
 
 
     /**
-     * Contains a list of the valid websites.
+     * This is referred to as the valid site list throughout this class and 
+     * others. 
+     * 
+     * It contains a list of web sites encountered containing the search queries
+     * specified by the user.
      */
     private JList       validWebsitesList;
 
 
     /**
-     * The split panes to help organize the layout of the UI.
+     * The split panes to help organize the layout of the GUI.
      */
     private JSplitPane  northSouth, eastWest;
 
 
-    /** Controls input events from this class' components. */
+    /**
+     * Helps set up the crawler, start the crawler, stop the crawler, and 
+     * display information about the crawler to the user.
+     */
     private Controller  controller;
 
 
-    /** The ListModel for the list containing the valid site links. */
+    /** 
+     * The ListModel to update when wanting to add a valid site to the valid 
+     * site list. 
+     */
     private DefaultListModel listModel;
     
     
-    /**
-     * The MainGraphics constructor method will instantiate the classes needed
-     * to carry out web crawling operations.
-     */
+    /** Default constructor for the MainGraphics class. */
     public MainGraphics() {}
 
 
     /**
      * Creates and shows the GUI to the user.
+     * 
+     * Sets the look and feel and creates the GUI components.
      */
     public void createAndShowGUI() {
         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         } catch (ClassNotFoundException
                 | InstantiationException
                 | IllegalAccessException
@@ -129,7 +141,8 @@ public class MainGraphics {
 
 
     /**
-     * Creates the buttons and adds their action listeners.
+     * Creates the tool bar that will contain the buttons. It will then create
+     * the buttons to add to the tool bar and adds them.
      */
     private void createButtons() {
         toolBar = new JToolBar();
@@ -161,21 +174,18 @@ public class MainGraphics {
 
 
     /**
-     * Sets up the console. Redirects the systems output stream to the console
-     * text area.
+     * Creates the console text area.
      */
     private void setupConsole() {
         consoleArea = new JTextArea(5,20);
         consoleArea.setLineWrap(true);
-
-//        redirectOutputStream();
     }
 
 
     /**
-     * Creates the quick info text area and the list that will contain valid
-     * website links. Right now, the list is populated with items that all say
-     * Hello.
+     * Creates a JTextArea that will display information about the selected item
+     * in the valid sites list. Also, it creates the valid sites list and 
+     * instantiates the list's ListModel.
      */
     private void createQuickInfoAreaAndList() {
         quickInfoTextArea = new JTextArea(5,15);
@@ -190,7 +200,11 @@ public class MainGraphics {
 
 
     /**
-     * Adds the console to the bottom of the split pane and then the
+     * Adds the eastWest split pane (contains the valid site links list and the
+     * quick info text area) and the console text area to the northSouth split
+     * pane, then adds the northSouth split pane to the window panel. The result
+     * will be a split pane containing the console area as the bottom component
+     * and the eastWest split pane as the top component.
      */
     private void addComponents() {
         northSouth = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
@@ -203,43 +217,12 @@ public class MainGraphics {
 
 
     /**
-     * Updates the text displayed in the console area.
-     *
-     * @param text
+     * Appends a message to the end of the console text area. The console text 
+     * area is located at the bottom of the main application window.
+     * 
+     * @param text  The text to append to the console text area.
      */
-    private void updateConsoleArea(String text) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                consoleArea.append(text);
-            }
-        });
-    }
-
-
-    /**
-     * Redirects the standard output stream. After calling this method, all
-     * output will be displayed in the consoleArea text area.
-     */
-    private void redirectOutputStream() {
-        OutputStream out = new OutputStream() {
-
-            @Override
-            public void write(int b) throws IOException {
-                updateConsoleArea(String.valueOf((char) b));
-            }
-
-            @Override
-            public void write(byte[] b, int off, int len) throws IOException {
-                updateConsoleArea(new String(b, off, len));
-            }
-
-            @Override
-            public void write(byte[] b) throws IOException {
-                write(b, 0, b.length);
-            }
-        };
-
-        System.setOut(new PrintStream(out, true));
+    public static void updateConsoleArea(String text) {
+        consoleArea.append(text+"\n");
     }
 }

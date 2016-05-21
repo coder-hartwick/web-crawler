@@ -21,6 +21,6 @@ public class WebCrawlUtilitiesTester {
         String[] queries = {"number","school","java","password"};
         String[] websites = {"https://www.random.org/","http://www.randomthingstodo.com/","http://www.huffingtonpost.com/"};
         int amount = 50;
-        new Thread(new CrawlerManager(queries, websites, amount)).start();
+//        new Thread(new CrawlerManager(queries, websites, amount)).start();
     }
 }

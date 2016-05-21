@@ -1,7 +1,14 @@
 package web.crawler.gui;
 
 
+import errorreport.ErrorReport;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import web.crawler.crawling.CrawlerManager;
 
 
@@ -35,11 +42,30 @@ public class Controller {
     
     
     /**
-     * What this method does is still being worked on. However, it will still 
-     * display the dialog that is required for web crawler setup.
+     * Displays a dialog so the user can enter their desired settings for the 
+     * web crawler and then starts the crawling if the user did not cancel the 
+     * dialog. It also displays some output to the user.
      */
     public void setupWebCrawler() {
-        new CrawlerSetupDialog(null, true);
+        CrawlerSetupDialog csd = new CrawlerSetupDialog(null, true);
+        
+        Object[] data = csd.getData();
+        if(data[0] != null) {
+            MainGraphics.updateConsoleArea("---------------------------------------------");
+            MainGraphics.updateConsoleArea("Setup Web Crawler Info");
+            MainGraphics.updateConsoleArea("Sites: "+Arrays.toString((String[])data[0]));
+            MainGraphics.updateConsoleArea("Search Queries: "+Arrays.toString((String[])data[1]));
+            MainGraphics.updateConsoleArea("Amount of Links to Collect: "+data[2]);
+            MainGraphics.updateConsoleArea("---------------------------------------------");
+            
+            crawlerManager = new CrawlerManager((String[])data[1], 
+                                                (String[])data[0], 
+                                                (int)data[2],
+                                                listModel);
+            
+            Thread thread = new Thread(crawlerManager);
+            thread.start();
+        }           
     }
     
     
@@ -47,6 +73,10 @@ public class Controller {
      * Stops the web crawling operations.
      */
     public void stopWebCrawler() {
-//        crawlerManager.stopCrawlers();
+        crawlerManager.stopCrawlers();
+        JOptionPane.showMessageDialog(null, 
+                                        "Crawler Stopped", 
+                                        "Crawling Operations", 
+                                        JOptionPane.INFORMATION_MESSAGE);
     }
 }

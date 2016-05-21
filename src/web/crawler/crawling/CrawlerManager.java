@@ -1,11 +1,13 @@
 package web.crawler.crawling;
 
-import errorreport.ErrorReport;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
+import web.crawler.gui.MainGraphics;
 
 
 /**
@@ -25,7 +27,7 @@ public class CrawlerManager implements Runnable {
 
 
     /** Contains the links that contain the search query. */
-    private static Set<String> validLinks = new HashSet<>();
+    private static List<String> validLinks = new ArrayList<>();
 
 
     /** Contains all of the information packages. */
@@ -38,6 +40,10 @@ public class CrawlerManager implements Runnable {
 
     /** Contains all of the crawler threads. */
     private Thread[] crawlerThreads;
+    
+    
+    /** The list model to add the valid site links to. */
+    private static DefaultListModel listModel;
 
 
     /** The UserAgentAssigner to assign user agents to the crawler classes. */
@@ -50,8 +56,11 @@ public class CrawlerManager implements Runnable {
      * @param queries           The search queries (contains one or more query).
      * @param startingLinks     The first links to scan.
      * @param amountToScan      The maximum amount of links to scan.
+     * @param model             The list model to add the valid sites to.
      */
-    public CrawlerManager(String[] queries, String[] startingLinks, int amountToScan) {
+    public CrawlerManager(String[] queries, String[] startingLinks, int amountToScan, ListModel model) {
+        listModel = (DefaultListModel)model;
+        
         uas = new UserAgentAssigner("src/agents.txt", 7);
 
         crawlerThreadGroup = new ThreadGroup("thread_group");
@@ -99,17 +108,18 @@ public class CrawlerManager implements Runnable {
      */
     public static void addScannedLink(String link) {
         linksScanned.add(link);
+        MainGraphics.updateConsoleArea("Visited site "+link);
     }
 
 
     /**
-     * Adds a link to the links that contain the search query so it is not
-     * scanned again.
+     * Adds a link that contains at least one search query.
      *
      * @param link  The link that contains the search query.
      */
     public static void addValidLink(String link) {
         validLinks.add(link);
+        listModel.addElement(link);
     }
 
 
@@ -142,22 +152,20 @@ public class CrawlerManager implements Runnable {
     public static List<InformationPackage> getAllInformationPackages() {
         return infoPackages;
     }
+    
+    
+    /**
+     * Returns the list that contains the valid links.
+     * 
+     * @return  the list that contains the valid links.
+     */
+    public static List<String> getValidLinks() {
+        return validLinks;
+    }
 
 
     @Override
     public void run() {
         startCrawlers();
-        while(activeCrawlers() > 0) {
-            System.out.println("Active Threads: "+activeCrawlers());
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException err) {
-                ErrorReport.createErrorReport(err);
-            }
-        }
-
-        for(InformationPackage p : infoPackages) {
-            System.out.println(p.toString());
-        }
     }
 }
