@@ -349,7 +349,7 @@ public class CrawlerSetupDialog extends JDialog {
         c.gridy = 3;
         c.gridwidth = 1;
         c.gridheight = 1;
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         container.add(amountField, c);
 
         c.gridx = 0;
