@@ -24,11 +24,15 @@ import org.jsoup.select.Elements;
 public class CrawlerLeg {
 
 
-    /** Contains the links found on the page this crawler leg scanned. */
+    /**
+     * Contains the links found on the page this crawler leg scanned.
+     */
     private List<String> links;
 
 
-    /** Contains the search queries. */
+    /**
+     * Contains the search queries.
+     */
     private String[] queries;
 
 
@@ -39,7 +43,9 @@ public class CrawlerLeg {
     private int[] amountFound;
 
 
-    /** The user agent for this crawler to use when connecting to a page. */
+    /**
+     * The user agent for this crawler to use when connecting to a page.
+     */
     private String userAgent;
 
 

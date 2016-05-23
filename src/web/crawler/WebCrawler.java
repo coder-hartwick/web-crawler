@@ -5,9 +5,7 @@ import web.crawler.gui.MainGraphics;
 
 
 /**
- * This is a web crawling application that uses the Jsoup libraries. It has a
- * GUI written with Java Swing that will display to the user information about
- * what the program is doing.
+ * This is a web crawling application that uses the Jsoup libraries.
  *
  * @author  Jordan Hartwick
  * May 14, 2016
@@ -16,7 +14,7 @@ public class WebCrawler {
 
 
     /**
-     * Main method of the program. Starts the GUI.
+     * Main method of the program. Displays the GUI.
      *
      * @param args the command line arguments
      */

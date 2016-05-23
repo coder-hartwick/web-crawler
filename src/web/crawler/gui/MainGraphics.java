@@ -27,8 +27,8 @@ import web.crawler.infoexport.InfoExporter;
  * This is the main graphics class of the crawler application. It contains a
  * list that displays the sites that were found during web crawling, a console
  * that displays output about the crawling session to the user, and a quick
- * info area that will display info about the currently selected link in the 
- * list. 
+ * info area that will display info about the currently selected link in the
+ * list.
  *
  * @author Jordan Hartwick
  * May 14, 2016
@@ -36,78 +36,89 @@ import web.crawler.infoexport.InfoExporter;
 public class MainGraphics {
 
 
-    /** The main frame that holds the main panel in the application. */
-    private JFrame      windowFrame;
-
-
-    /** The main panel that holds graphical components in the application. */
-    private JPanel      windowPanel;
-
-    
-    /** The tool bar that holds the buttons. */
-    private JToolBar    toolBar;
-
-
-    /** Buttons to change the working status of the web crawler. */
-    private JButton     start, stop, export;
+    /**
+     * The main frame that holds the main panel in the application.
+     */
+    private JFrame windowFrame;
 
 
     /**
-     * Displays information to the user about the progress of the crawling 
+     * The main panel that holds graphical components in the application.
+     */
+    private JPanel windowPanel;
+
+
+    /**
+     * The tool bar that holds the buttons.
+     */
+    private JToolBar toolBar;
+
+
+    /**
+     * Buttons to change the running state of the web crawler and to export the
+     * information contained in the information packages list.
+     */
+    private JButton start, stop, export;
+
+
+    /**
+     * Displays information to the user about the progress of the crawling
      * operations.
      */
-    private static JTextArea   consoleArea;
+    private static JTextArea consoleArea;
 
 
     /**
      * Its text will be set to the data in an InformationPackage when an item
-     * in the infoPackageList is clicked on.
-     * 
+     * in the information package list is clicked on.
+     *
      * @see web.crawler.crawling.InformationPackage
      */
-    private JTextArea   quickInfo;
+    private JTextArea quickInfo;
 
 
     /**
      * Contains a list of InformationPackages.
-     * 
+     *
      * @see web.crawler.crawling.InformationPackage.
-     */ 
-    private JList       infoPackagesList;
+     */
+    private JList infoPackagesList;
 
 
     /**
      * The split panes to help organize the layout of the GUI.
      */
-    private JSplitPane  northSouth, eastWest;
+    private JSplitPane northSouth, eastWest;
 
 
     /**
-     * Helps set up the crawler, start the crawler, stop the crawler, and 
+     * Helps set up the crawler, start the crawler, stop the crawler, and
      * display information about the crawler to the user.
      */
-    private Controller  controller;
+    private Controller controller;
 
 
-    /** 
+    /**
      * The ListModel to add an InformationPackage to.
      */
     private DefaultListModel listModel;
-    
-    
-    /** Default constructor for the MainGraphics class. */
+
+
+    /**
+     * Default constructor for the MainGraphics class.
+     */
     public MainGraphics() {}
 
 
     /**
      * Creates and shows the GUI to the user.
-     * 
+     *
      * Sets the look and feel and creates the GUI components.
      */
     public void createAndShowGUI() {
         try {
-//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         } catch (ClassNotFoundException
                 | InstantiationException
                 | IllegalAccessException
@@ -130,7 +141,7 @@ public class MainGraphics {
         createConsole();
         createQuickInfoAreaAndList();
         addComponents();
-        
+
         controller = new Controller(listModel);
 
         windowFrame.setContentPane(windowPanel);
@@ -154,7 +165,7 @@ public class MainGraphics {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.setupWebCrawler(quickInfo);
+                controller.setupWebCrawler(quickInfo, start, stop);
             }
         });
 
@@ -166,10 +177,11 @@ public class MainGraphics {
                 controller.stopWebCrawler();
             }
         });
+        stop.setEnabled(false);
 
         export = new JButton("Export");
         export.addActionListener(new AbstractAction() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(listModel.getSize() == 0) {
@@ -183,7 +195,7 @@ public class MainGraphics {
                 }
             }
         });
-        
+
         toolBar.add(start);
         toolBar.addSeparator();
         toolBar.add(stop);
@@ -204,10 +216,10 @@ public class MainGraphics {
 
 
     /**
-     * Creates a JTextArea that will contain the information from an 
-     * InformationPackage. Also creates a JList containing the 
+     * Creates a JTextArea that will contain the information from an
+     * InformationPackage. Also creates a JList containing the
      * InformationPackages.
-     * 
+     *
      * @see web.crawler.crawling.InformationPackage
      * @see web.crawler.crawling.CrawlerManager
      */
@@ -215,7 +227,7 @@ public class MainGraphics {
         quickInfo = new JTextArea(5,15);
 
         listModel = new DefaultListModel();
-        
+
         infoPackagesList = new JList(listModel);
         infoPackagesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         infoPackagesList.setCellRenderer(new InfoPackageCellRenderer(quickInfo));
@@ -244,16 +256,16 @@ public class MainGraphics {
 
 
     /**
-     * Appends a message to the end of the console text area. The console text 
+     * Appends a message to the end of the console text area. The console text
      * area is located at the bottom of the main application window.
-     * 
+     *
      * @param text  The text to append to the console text area.
      */
     public static void updateConsoleArea(String text) {
         consoleArea.append(text+"\n");
     }
-    
-    
+
+
     /**
      * Clears the console text area.
      */

@@ -1,0 +1,40 @@
+------------------------------------
+Link: http://www.cbsnews.com/
+obama: 5
+hillary: 1
+------------------------------------
+------------------------------------
+Link: http://www.cbsnews.com/news/60-minutes-toasts-morley-safer/
+obama: 1
+hillary: 0
+------------------------------------
+------------------------------------
+Link: http://www.cbsnews.com/news/60-minutes-morley-safer-a-reporters-life/
+obama: 1
+hillary: 0
+------------------------------------
+------------------------------------
+Link: http://www.cbsnews.com/news/10-morley-safer-greatest-hits-that-show-journalism-at-its-best/
+obama: 1
+hillary: 0
+------------------------------------
+------------------------------------
+Link: http://www.cbsnews.com/news/48-hours-presents-the-spymasters-cia-in-the-crosshairs/
+obama: 19
+hillary: 0
+------------------------------------
+------------------------------------
+Link: http://www.cbsnews.com/videos/what-is-torture-and-should-we-do-it/
+obama: 3
+hillary: 1
+------------------------------------
+------------------------------------
+Link: http://www.cbsnews.com/pictures/david-kennerly-portraits-the-cias-spymasters-directors-and-operatives/
+obama: 3
+hillary: 0
+------------------------------------
+------------------------------------
+Link: http://www.cbsnews.com/news/dressing-down-the-rise-of-athleisure/
+obama: 1
+hillary: 0
+------------------------------------

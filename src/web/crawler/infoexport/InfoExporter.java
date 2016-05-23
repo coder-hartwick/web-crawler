@@ -62,6 +62,15 @@ public class InfoExporter {
         JOptionPane.showMessageDialog(null, "File saved.", "Save File", 1);
     }
     
+    
+    /**
+     * Displays a JFileChooser that prompts the user for a file save location.
+     * If the user cancels the dialog, it will return "cancel_option". If the
+     * user confirms, it will return the file name the user typed in.
+     * 
+     * @return  "cancel_option" if the user canceled the dialog, otherwise the
+     *          file name the user specified.
+     */
     private String getFileName() {
         final JFileChooser fileChooser = new JFileChooser();
         int returnVal = fileChooser.showSaveDialog(null);

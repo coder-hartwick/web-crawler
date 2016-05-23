@@ -10,33 +10,43 @@ import web.crawler.gui.MainGraphics;
 /**
  * The CrawlerManager is used to start and manage the Crawler threads, and add
  * InformationPackages to the InformationPackage list's list model.
- * 
+ *
  * @see web.crawler.crawling.CrawlerLeg
  * @see web.crawler.crawling.InformationPackage
- * 
+ *
  * @author Jordan Hartwick
  * May 16, 2016
  */
 public class CrawlerManager extends Thread {
 
 
-    /** Contains the links that have already been scanned. */
+    /**
+     * Contains the links that have already been scanned.
+     */
     private static Set<String> linksScanned = new HashSet<>();
 
 
-    /** All of the crawler threads belong to this thread group. */
+    /**
+     * All of the crawler threads belong to this thread group.
+     */
     private ThreadGroup crawlerThreadGroup;
 
 
-    /** Contains all of the crawler threads. */
+    /**
+     * Contains all of the crawler threads.
+     */
     private Thread[] crawlerThreads;
-    
-    
-    /** The list model to add InformationPackages to. */
+
+
+    /**
+     * The list model to add InformationPackages to.
+     */
     private static DefaultListModel listModel;
 
 
-    /** The UserAgentAssigner that assigns user agents to the Crawlers. */
+    /**
+     * The UserAgentAssigner that assigns user agents to the Crawlers.
+     */
     private UserAgentAssigner uas;
 
 
@@ -50,7 +60,7 @@ public class CrawlerManager extends Thread {
      */
     public CrawlerManager(String[] queries, String[] startingLinks, int amountToScan, ListModel model) {
         listModel = (DefaultListModel)model;
-        
+
         uas = new UserAgentAssigner("src/agents.txt", 7);
 
         crawlerThreadGroup = new ThreadGroup("thread_group");
@@ -58,7 +68,7 @@ public class CrawlerManager extends Thread {
         crawlerThreads = new Thread[startingLinks.length];
         for(int i = 0; i < startingLinks.length; i++) {
             crawlerThreads[i] = new Thread(crawlerThreadGroup,
-                                           new Crawler(queries, 
+                                           new Crawler(queries,
                                                        startingLinks[i],
                                                        uas.getUserAgent(),
                                                        amountToScan));
@@ -106,13 +116,13 @@ public class CrawlerManager extends Thread {
     /**
      * Adds an InformationPackage to the list model so it is displayed to the
      * user.
-     * 
-     * @param infoPackage   The InformaitonPackage to add to the list model.
+     *
+     * @param infoPackage   The InformationPackage to add to the list model.
      */
     public static void addInfoPackage(InformationPackage infoPackage) {
         listModel.addElement(infoPackage);
     }
-    
+
 
     /**
      * Returns true if a link has been scanned. If not, returns false.
