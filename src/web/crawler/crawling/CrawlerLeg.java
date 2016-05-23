@@ -24,80 +24,80 @@ import org.jsoup.select.Elements;
 public class CrawlerLeg {
 
 
-    /** Contains the links that are on the page this CrawlerLeg scanned. */
-    private List<String> links = new ArrayList<>();
+    /** Contains the links found on the page this crawler leg scanned. */
+    private List<String> links;
 
-    
-    /** Contains the queries to search for. */
+
+    /** Contains the search queries. */
     private String[] queries;
 
-    
-    private int[] occurrencesOfWords;
 
     /**
-     * Contains the user agent this CrawlerLeg should when connecting to a site.
+     * Contains the occurrences of each search query on the page that was
+     * scanned.
      */
+    private int[] amountFound;
+
+
+    /** The user agent for this crawler to use when connecting to a page. */
     private String userAgent;
 
 
     /**
      * Constructor method for the CrawlerLeg creates a new instance of the
-     * CrawlerLeg class.
+     * CrawlerLeg class and assigns the queries and user agent.
      *
      * @param queries   The search queries.
      * @param userAgent The user agent to use when connecting to a site.
      */
     public CrawlerLeg(String[] queries, String userAgent) {
-        this.queries    = queries;
-        this.userAgent  = userAgent;
+        this.queries = queries;
+        this.userAgent = userAgent;
+
+        this.links = new ArrayList<>();
     }
 
 
     /**
-     * Connects to the web page using the specified user agent, gets the 
-     * document, and processes the document's content. It will first call a 
+     * Connects to the web page using the specified user agent, gets the
+     * document, and processes the document's content. It will first call a
      * method to get the instances of each search query in the document and then
      * gather links from the document. If the document does not contain any of
      * the search queries, it will return false; it will return true otherwise.
-     * If the link is empty, it will return false. If the connection could not 
+     * If the link is empty, it will return false. If the connection could not
      * receive the web page, it will return false.
-     * 
+     *
      * @param link  The link to the page to process.
      * @return      True if the page contains a search query one or more times.
      *              False if the link was empty, the web page could not be
      *              received, or if all search queries were not found.
      */
     public boolean crawl(String link) {
-        System.out.println("Crawling page: "+link);
+        try {
 
-        try {            
-            
             if(link.isEmpty()) {
                 return false;
             }
-            
-            // Try and get the document.
-            Connection con = Jsoup.connect(link).userAgent(userAgent);            
+
+            Connection con = Jsoup.connect(link).userAgent(userAgent);
             Document doc = con.get();
             if(con.response().statusCode() != 200) {
                 return false;
-            }                        
-            
+            }
+
             searchDocument(doc);
 
-            // Get the links on the page.
             Elements linksOnPage = doc.select("a[href]");
             for(Element e : linksOnPage) {
                 links.add(e.absUrl("href"));
-            }            
-                        
-            // Check if at least one of the queries occur on the page.
-            for(int i : occurrencesOfWords) {
+            }
+
+            for(int i : amountFound) {
                 if(i > 0) return true;
             }
-            
+
             return false;
-        } catch (IOException err) {            
+        } catch (IOException err) {
             ErrorReport.createErrorReport(err);
             return false;
         }
@@ -105,47 +105,43 @@ public class CrawlerLeg {
 
 
     /**
-     * Searches the specified document for the specified search queries. 
-     * 
+     * Searches the document for the specified search queries.
+     *
      * @param doc   The document to search.
      */
     private void searchDocument(Document doc) {
-        occurrencesOfWords = new int[queries.length];
-        
+        amountFound = new int[queries.length];
+
         if(doc != null && doc.body() != null) {
-            
-            // Find each occurrence of the word.
             for(int i = 0; i < queries.length; i++) {
-                occurrencesOfWords[i] = 0;
+                amountFound[i] = 0;
 
                 Pattern pattern = Pattern.compile("\\b" + queries[i] + "\\b");
                 Matcher matcher = pattern.matcher(doc.body().text().toLowerCase());
                 while(matcher.find()) {
-                    occurrencesOfWords[i]++;
+                    amountFound[i]++;
                 }
             }
         } else {
-            for(int i = 0; i < queries.length; i++) {
-                occurrencesOfWords[i] = 0;
-            }
+            amountFound = new int[]{0,0,0,0};
         }
     }
-    
-    
+
+
     /**
-     * Returns the occurrences of each search query. 
-     * 
+     * Returns the occurrences of each search query.
+     *
      * @return  The occurrences of each search query.
      */
-    public int[] getSearchQueryOccurrences() {
-        return occurrencesOfWords;
+    public int[] getAllAmounts() {
+        return amountFound;
     }
 
 
     /**
-     * Returns the links this CrawlerLeg found.
+     * Returns the links found on the page this crawler leg scanned.
      *
-     * @return  The links this CrawlerLeg found.
+     * @return  The links found on the page this crawler leg scanned.
      */
     public List<String> getLinks() {
         return links;

@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 
 /**
- * The InformationPackage contains a link to a website, the search queries,
- * and the occurrences of the search queries on the website. 
+ * The InformationPackage contains a link to a site, the search queries,
+ * and the occurrences of each search query on the site. 
  *
  * @author Jordan Hartwick
  * May 17, 2016
@@ -77,10 +77,14 @@ public class InformationPackage {
     */
     @Override
     public String toString() {
-        return "-------------------------------\n"
-                + "Information:\n"
-                + getLink() + "\n"
-                + Arrays.toString(getSearchQueries()) + "\n"
-                + Arrays.toString(getSearchQueryOccurrences());
+        String searchQueryData = "";
+        for(int i = 0; i < searchQueries.length; i++) {
+            searchQueryData += searchQueries[i] + ": " + searchQueryOccurrences[i] + "\n";
+        }
+        
+        return "------------------------------------\n"
+                + "Link: " + getLink() + "\n"
+                + searchQueryData
+                + "------------------------------------";
     }
 }

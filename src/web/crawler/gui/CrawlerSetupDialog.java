@@ -51,7 +51,7 @@ public class CrawlerSetupDialog extends JDialog {
 
 
     /** Labels that label what to do and what certain fields are. */
-    private JLabel mainDirections, site, queries, amountToScan;
+    private JLabel mainDirections, site, queries, amount;
 
 
     /**
@@ -65,11 +65,11 @@ public class CrawlerSetupDialog extends JDialog {
      * Text fields to allow the user places to specify a site to add and some
      * search queries.
      */
-    private JTextField siteLink, searchQueries, amount;
+    private JTextField siteField, queryField, amountField;
 
 
     /** The list that contains the starting sites. */
-    private JList siteList;
+    private JList sites;
     
     
     /** The list model for the siteList. */
@@ -77,11 +77,11 @@ public class CrawlerSetupDialog extends JDialog {
     
     
     /** String arrays to hold the sites and the queries. */
-    private String[] siteLinks, queryList;
+    private String[] siteList, queryList;
     
     
     /** Holds the amount of sites to be scanned. */
-    private int siteAmount;
+    private int amountToScan;
     
     
     /**
@@ -118,35 +118,39 @@ public class CrawlerSetupDialog extends JDialog {
     private void createComponents() {
         container = new JPanel(new GridBagLayout());
 
-        mainDirections  = new JLabel("Fill out the fields below.");
-        site            = new JLabel("Site:");
-        site.setHorizontalAlignment(SwingConstants.RIGHT);
-        queries         = new JLabel("Add search queries below separated by commas.");
-        amountToScan    = new JLabel("Amount to scan:");
-        amountToScan.setHorizontalAlignment(SwingConstants.RIGHT);
+        mainDirections = new JLabel("Fill out the fields below.");
         
-        listModel   = new DefaultListModel();
-        siteList    = new JList(listModel);
-        siteList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        site = new JLabel("Site:");
+        site.setHorizontalAlignment(SwingConstants.RIGHT);
+        
+        queries = new JLabel("Add search queries below separated by commas.");
+        
+        amount = new JLabel("Amount to scan:");
+        amount.setHorizontalAlignment(SwingConstants.RIGHT);
+        
+        listModel = new DefaultListModel();
+        sites = new JList(listModel);
+        sites.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        JPopupMenu popupMenu = new JPopupMenu();
-        JMenuItem removeItem = new JMenuItem("Remove");
-        removeItem.addActionListener(new AbstractAction() {
+        JPopupMenu popup = new JPopupMenu();
+        JMenuItem remove = new JMenuItem("Remove");
+        remove.addActionListener(new AbstractAction() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                listModel.removeElementAt(siteList.getSelectedIndex());
+                listModel.removeElementAt(sites.getSelectedIndex());
             }
         });
-        popupMenu.add(removeItem);
+        popup.add(remove);
         
-        siteList.addMouseListener(new MouseAdapter() {
+        // Add a mouse listener to listen for clicks in the list.
+        sites.addMouseListener(new MouseAdapter() {
             
             @Override
             public void mouseReleased(MouseEvent e) {
                 if(e.getButton() == MouseEvent.BUTTON3 && listModel.size() > 0) {
-                    siteList.setSelectedIndex(siteList.locationToIndex(e.getPoint()));
-                    popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                    sites.setSelectedIndex(sites.locationToIndex(e.getPoint()));
+                    popup.show(e.getComponent(), e.getX(), e.getY());
                 }
             }
         });
@@ -156,53 +160,50 @@ public class CrawlerSetupDialog extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                ListModel data = siteList.getModel();
+                ListModel data = sites.getModel();
                 
-                /*
-                    Check the settings and the user entered data. If everything
-                    checks out, then set the data to the globals and close this
-                    dialog.
-                */
+                // Check if the values entered in the dialog are valid.
                 if(data.getSize() == 0) {
                     JOptionPane.showMessageDialog(null, 
-                                                    "No sites provided.", 
-                                                    "Error", 
-                                                    JOptionPane.ERROR_MESSAGE);
-                } else if(searchQueries.getText().trim().length() == 0) {
+                                                  "No sites provided.", 
+                                                  "Error", 
+                                                  0);
+                } else if(queryField.getText().trim().length() == 0) {
                     JOptionPane.showMessageDialog(null, 
-                                                    "No search queries provided.", 
-                                                    "Error", 
-                                                    JOptionPane.ERROR_MESSAGE);
-                } else if(amount.getText().trim().length() == 0) {
+                                                  "No search queries provided.", 
+                                                  "Error", 
+                                                  0);
+                } else if(amountField.getText().trim().length() == 0) {
                     JOptionPane.showMessageDialog(null, 
-                                                    "No amount provided.", 
-                                                    "Error", 
-                                                    JOptionPane.ERROR_MESSAGE);
+                                                  "No amount provided.", 
+                                                  "Error", 
+                                                  0);
                 } else {
                     List<String> listData = new ArrayList<>();
+                    
                     for(int i = 0; i < data.getSize(); i++) {
                         listData.add((String) data.getElementAt(i));
                     }
                     
-                    siteLinks = Arrays.copyOf(listData.toArray(),
-                                                listData.size(), 
-                                                String[].class);
+                    siteList = Arrays.copyOf(listData.toArray(),
+                                              listData.size(), 
+                                              String[].class);
                     
-                    queryList = searchQueries.getText().trim().split(",");
+                    queryList = queryField.getText().trim().split(",");
                     
                     try {
-                        siteAmount = Integer.parseInt(amount.getText());
+                        amountToScan = Integer.parseInt(amountField.getText());
                         closeDialog();
                     } catch (InputMismatchException err) {
                         ErrorReport.createErrorReport(err);
                         JOptionPane.showMessageDialog(null, 
-                                                        "Amount specified is not a number.", 
-                                                        "Error", 
-                                                        JOptionPane.ERROR_MESSAGE);
+                                                      "Amount specified is not a number.", 
+                                                      "Error", 
+                                                      0);
                     }
                 }
             }
-        });
+        }); // End of confirm button action listener.
 
         cancel = new JButton("Cancel");
         cancel.addActionListener(new AbstractAction() {
@@ -218,31 +219,31 @@ public class CrawlerSetupDialog extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(siteLink.getText().trim().length() != 0) {
-                    listModel.addElement(siteLink.getText().trim());
-                    siteLink.setText(null);
-                    siteLink.requestFocus();
+                if(siteField.getText().trim().length() != 0) {
+                    listModel.addElement(siteField.getText().trim());
+                    siteField.setText(null);
+                    siteField.requestFocus();
                 }
             }
         });
 
-        siteLink = new JTextField(15);
-        siteLink.addKeyListener(new KeyAdapter() {
+        siteField = new JTextField(15);
+        siteField.addKeyListener(new KeyAdapter() {
             
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    if(siteLink.getText().trim().length() != 0) {
-                        listModel.addElement(siteLink.getText().trim());
-                        siteLink.setText(null);
-                        siteLink.requestFocus();
-                    }
+                if(e.getKeyCode() == KeyEvent.VK_ENTER
+                        && siteField.getText().trim().length() != 0) {
+
+                    listModel.addElement(siteField.getText().trim());
+                    siteField.setText(null);
+                    siteField.requestFocus();
                 }
             }
         });
         
-        searchQueries = new JTextField(20);
-        amount = new JTextField(5);
+        queryField = new JTextField(20);
+        amountField = new JTextField(5);
     }
 
 
@@ -268,14 +269,14 @@ public class CrawlerSetupDialog extends JDialog {
         c.gridx = 1;
         c.gridy = 1;
         c.gridwidth = 2;
-        container.add(siteLink, c);
+        container.add(siteField, c);
 
         c.gridx = 3;
         c.gridy = 1;
         c.gridheight = 3;
         c.gridwidth = 1;
         c.fill = GridBagConstraints.NONE;
-        JScrollPane scrollPane = new JScrollPane(siteList);
+        JScrollPane scrollPane = new JScrollPane(sites);
         scrollPane.setPreferredSize(new Dimension(130, 100));
         container.add(scrollPane, c);
 
@@ -291,14 +292,14 @@ public class CrawlerSetupDialog extends JDialog {
         c.gridwidth = 2;
         c.gridheight = 1;
         c.fill = GridBagConstraints.BOTH;
-        container.add(amountToScan, c);
+        container.add(amount, c);
 
         c.gridx = 2;
         c.gridy = 3;
         c.gridwidth = 1;
         c.gridheight = 1;
         c.fill = GridBagConstraints.BOTH;
-        container.add(amount, c);        
+        container.add(amountField, c);        
 
         c.gridx = 0;
         c.gridy = 4;
@@ -312,7 +313,7 @@ public class CrawlerSetupDialog extends JDialog {
         c.gridwidth = 4;
         c.gridheight = 1;
         c.fill = GridBagConstraints.BOTH;
-        container.add(searchQueries, c);        
+        container.add(queryField, c);        
         
         c.gridx = 2;
         c.gridy = 6;
@@ -336,7 +337,7 @@ public class CrawlerSetupDialog extends JDialog {
      * @return  The data that was entered in this dialog.
      */
     public Object[] getData() {
-        return new Object[]{siteLinks, queryList, siteAmount};
+        return new Object[]{siteList, queryList, amountToScan};
     }
     
     

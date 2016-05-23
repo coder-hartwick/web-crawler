@@ -5,24 +5,30 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import javax.swing.AbstractAction;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
+import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import web.crawler.infoexport.InfoExporter;
 
 
 /**
- * This is the class that creates the main screen that the user sees. This
- * screen will contain controls that the user will use to manage the web
- * crawler.
+ * This is the main graphics class of the crawler application. It contains a
+ * list that displays the sites that were found during web crawling, a console
+ * that displays output about the crawling session to the user, and a quick
+ * info area that will display info about the currently selected link in the 
+ * list. 
  *
  * @author Jordan Hartwick
  * May 14, 2016
@@ -43,35 +49,31 @@ public class MainGraphics {
 
 
     /** Buttons to change the working status of the web crawler. */
-    private JButton     startButton, stopButton;
+    private JButton     start, stop, export;
 
 
     /**
-     * This is the console area that will display output as the web crawling 
-     * program is running. Think of it as a log area.
+     * Displays information to the user about the progress of the crawling 
+     * operations.
      */
     private static JTextArea   consoleArea;
 
 
     /**
-     * When a list item in the valid site list is clicked on, the text of this
-     * JTextArea will be set to the content in the InformationPackage that is
-     * related to the list item that was clicked on. Each list item has an 
-     * InformationPackage related to it.
+     * Its text will be set to the data in an InformationPackage when an item
+     * in the infoPackageList is clicked on.
      * 
      * @see web.crawler.crawling.InformationPackage
      */
-    private JTextArea   quickInfoTextArea;
+    private JTextArea   quickInfo;
 
 
     /**
-     * This is referred to as the valid site list throughout this class and 
-     * others. 
+     * Contains a list of InformationPackages.
      * 
-     * It contains a list of web sites encountered containing the search queries
-     * specified by the user.
-     */
-    private JList       validWebsitesList;
+     * @see web.crawler.crawling.InformationPackage.
+     */ 
+    private JList       infoPackagesList;
 
 
     /**
@@ -88,8 +90,7 @@ public class MainGraphics {
 
 
     /** 
-     * The ListModel to update when wanting to add a valid site to the valid 
-     * site list. 
+     * The ListModel to add an InformationPackage to.
      */
     private DefaultListModel listModel;
     
@@ -126,7 +127,7 @@ public class MainGraphics {
         });
 
         createButtons();
-        setupConsole();
+        createConsole();
         createQuickInfoAreaAndList();
         addComponents();
         
@@ -148,17 +149,17 @@ public class MainGraphics {
         toolBar = new JToolBar();
         toolBar.setFloatable(false);
 
-        startButton = new JButton("Start");
-        startButton.addActionListener(new AbstractAction() {
+        start = new JButton("Start");
+        start.addActionListener(new AbstractAction() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.setupWebCrawler();
+                controller.setupWebCrawler(quickInfo);
             }
         });
 
-        stopButton = new JButton("Stop");
-        stopButton.addActionListener(new AbstractAction() {
+        stop = new JButton("Stop");
+        stop.addActionListener(new AbstractAction() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -166,8 +167,28 @@ public class MainGraphics {
             }
         });
 
-        toolBar.add(startButton);
-        toolBar.add(stopButton);
+        export = new JButton("Export");
+        export.addActionListener(new AbstractAction() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(listModel.getSize() == 0) {
+                    JOptionPane.showMessageDialog(null, "No sites in list", "Error", 0);
+                } else {
+                    try {
+                        new InfoExporter().exportData(listModel);
+                    } catch (IOException err) {
+                        ErrorReport.createErrorReport(err);
+                    }
+                }
+            }
+        });
+        
+        toolBar.add(start);
+        toolBar.addSeparator();
+        toolBar.add(stop);
+        toolBar.addSeparator();
+        toolBar.add(export);
 
         windowPanel.add(toolBar, BorderLayout.PAGE_START);
     }
@@ -176,26 +197,32 @@ public class MainGraphics {
     /**
      * Creates the console text area.
      */
-    private void setupConsole() {
+    private void createConsole() {
         consoleArea = new JTextArea(5,20);
         consoleArea.setLineWrap(true);
     }
 
 
     /**
-     * Creates a JTextArea that will display information about the selected item
-     * in the valid sites list. Also, it creates the valid sites list and 
-     * instantiates the list's ListModel.
+     * Creates a JTextArea that will contain the information from an 
+     * InformationPackage. Also creates a JList containing the 
+     * InformationPackages.
+     * 
+     * @see web.crawler.crawling.InformationPackage
+     * @see web.crawler.crawling.CrawlerManager
      */
     private void createQuickInfoAreaAndList() {
-        quickInfoTextArea = new JTextArea(5,15);
+        quickInfo = new JTextArea(5,15);
 
         listModel = new DefaultListModel();
-        validWebsitesList = new JList(listModel);
+        
+        infoPackagesList = new JList(listModel);
+        infoPackagesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        infoPackagesList.setCellRenderer(new InfoPackageCellRenderer(quickInfo));
 
         eastWest = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-        eastWest.setLeftComponent(new JScrollPane(quickInfoTextArea));
-        eastWest.setRightComponent(new JScrollPane(validWebsitesList));
+        eastWest.setLeftComponent(new JScrollPane(quickInfo));
+        eastWest.setRightComponent(new JScrollPane(infoPackagesList));
     }
 
 
@@ -224,5 +251,13 @@ public class MainGraphics {
      */
     public static void updateConsoleArea(String text) {
         consoleArea.append(text+"\n");
+    }
+    
+    
+    /**
+     * Clears the console text area.
+     */
+    public static void clearConsoleArea() {
+        consoleArea.setText(null);
     }
 }

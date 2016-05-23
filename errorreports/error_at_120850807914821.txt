@@ -1,3 +1,0 @@
-java.lang.ArithmeticException: / by zero
-	at testing.WebCrawlUtilitiesTester.main(WebCrawlUtilitiesTester.java:27)
-

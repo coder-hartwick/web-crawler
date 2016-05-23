@@ -2,11 +2,17 @@ package web.crawler.crawling;
 
 import java.util.ArrayList;
 import java.util.List;
+import web.crawler.gui.MainGraphics;
 
 
 /**
- * The Crawler manages a Queue of links needing to be scanned for the specified
- * search query.
+ * The Crawler class holds a queue of links that need to be scanned by the 
+ * CrawlerLeg. When a CrawlerLeg finds at least one of the search queries on the
+ * page it was assigned, the Crawler class will add an InformationPackage 
+ * containing the CrawlerLeg's results to the CrawlerManager.
+ * 
+ * @see web.crawler.crawling.CrawlerManager
+ * @see web.craw.er.crawling.InformationPackage
  *
  * @author Jordan Hartwick
  * May 16, 2016
@@ -15,50 +21,47 @@ public class Crawler implements Runnable {
 
 
     /** Contains the links that need to be scanned. */
-    private List<String> linkQueue = new ArrayList<>();
+    private List<String> linkQueue;
 
 
-    /**
-     * Contains information about the website where the search query was found.
-     */
-    private List<InformationPackage> infoPackages = new ArrayList<>();
-
-    
-    /** Contains the search queries. */
+    /** The search queries to look for. */
     private String[] queries;
 
 
-    /** Contains the first link to scan. */
+    /** The first link to scan. */
     private String startLink;
 
 
-    /** Contains this crawlers user agent. */
+    /** The user agent for the CrawlerLegs. */
     private String userAgent;
-    
-    
+
+
     /** The amount of links to scan. */
     private int amountOfLinks;
 
 
     /**
-     * Creates a new instance of the Crawler class.
+     * Constructor method for the Crawler class.
      *
-     * @param queries       The queries to search for.
-     * @param startLink     The first link to scan.
-     * @param userAgent     The user agent for this crawler to use.
+     * @param queries       The search queries.
+     * @param startLink     The starting link for this crawler.
+     * @param userAgent     The user agent for this crawler.
+     * @param a             The amount of links this crawler should scan.
      */
     public Crawler(String[] queries, String startLink, String userAgent, int a) {
         this.queries        = queries;
         this.startLink      = startLink;
         this.userAgent      = userAgent;
         this.amountOfLinks  = a;
+
+        linkQueue       = new ArrayList<>();
     }
 
 
     /**
-     * Returns the link that should be scanned next.
+     * Returns a link to a page that has not been scanned.
      *
-     * @return  The next link to scan.
+     * @return  A link to a page that has not been scanned.
      */
     private String getNextLink() {
         String nextLink;
@@ -73,13 +76,23 @@ public class Crawler implements Runnable {
     }
 
 
+    /**
+     * Creates a crawler leg and assigns it a link to search. If the crawler leg
+     * found queries on the page specified by the link, then add an
+     * InformationPackage to the CrawlerManager. 
+     * 
+     * @param link  The link to scan.
+     * 
+     * @see web.crawler.crawling.CrawlerManager
+     * @see web.crawler.crawling.InformationPackage
+     */
     private void search(String link) {
         String linkToScan;
 
         int amountScanned = 0;
-        
-        while (amountScanned < amountOfLinks) {
-            if (linkQueue.isEmpty()) {
+
+        while(amountScanned < amountOfLinks && !Thread.interrupted()) {
+            if(linkQueue.isEmpty()) {
                 linkToScan = link;
                 CrawlerManager.addScannedLink(link);
             } else {
@@ -88,26 +101,27 @@ public class Crawler implements Runnable {
 
             CrawlerLeg cl = new CrawlerLeg(queries, userAgent);
 
-            if (cl.crawl(linkToScan)) {
-                CrawlerManager.addValidLink(linkToScan);
-                int[] searchQueryOccurrences = cl.getSearchQueryOccurrences();
-                infoPackages.add(new InformationPackage(linkToScan, queries, searchQueryOccurrences));
+            if(cl.crawl(linkToScan)) {    
+                CrawlerManager.addInfoPackage(
+                                    new InformationPackage(linkToScan, 
+                                                           queries, 
+                                                           cl.getAllAmounts()));
             }
-            
+
             linkQueue.addAll(cl.getLinks());
             amountScanned++;
         }
     }
 
 
+    /*
+        Starts the scanning process and displays a message in the console area 
+        telling the user that a web crawler has finished.
+    */
     @Override
     public void run() {
-        int amountScanned = 0;
-        
         search(startLink);
         
-        CrawlerManager.addAllInformationPackages(infoPackages);
-        
-        System.out.println("Web Crawler Finished");
+        MainGraphics.updateConsoleArea("Web Crawler Finished");
     }
 }
