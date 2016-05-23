@@ -1,0 +1,56 @@
+Things To Test:
+
+"X" means it has been tested and succeeded.
+
+At Startup:
+The start button is enabled at startup. X
+The stop button is disabled at startup. X
+
+During crawler setup: X
+Adding links to the links to scan list during setup. X
+	- Setup recognizes when a site link is valid and when it is not valid. X
+	- Add site button works as expected. X
+	- Text Field always regains focus after adding a site to the list. X
+Removing links from the links to scan list during setup. X
+	- Right click and remove item pops up. X
+		- When remove menu item is clicked, the site is removed from the list. X
+	- If there are no links, the remove menu does not pop up. X
+
+Testing conditions on crawler setup: X
+When no sites are entered, a dialog comes up saying so. X
+When an amount is not specified, a dialog comes up saying so. X
+When one or more search queries are not specified, a dialog comes up saying so. X
+
+If the amount entered is not a number, a dialog comes up saying so, and the text
+in the amount field is erased. X
+
+When cancel button is pressed, dialog disappears. X
+
+
+
+During crawling session: X
+Start button is disabled and stop button is enabled. X
+If search queries were found on a page, that pages link is added. X
+When the user clicks on an item, its information is displayed in the quick info dialog. X
+Output is redirected to the console area and there are no printing statements. X
+
+When the user clicks the stop button: X
+Crawling stops and a dialog displays saying the crawler is finished. X
+
+When crawling session is done: X
+A dialog appears saying so. X
+Stop button is disabled and start button is enabled. X
+
+When the user starts a new crawling session: X
+Follows the rules for "During crawler setup", "Testing conditions on crawler setup",
+"During crawling session", "When the user clicks the stop button", and "When crawling
+session is done". X
+
+When the user wants to export a file:  X
+A save file dialog appears. X
+Only legal file names are able to be saved. X
+	- If the user entered an illegal file name, then a dialog pops up saying so,
+		and the save file dialog displays again. X
+If the user clicks the cancel button in the save file dialog, the dialog is closed. X
+The file is actually saved with the information from the InformationPackage list. X
+A dialog appears stating that the file has been saved. X
