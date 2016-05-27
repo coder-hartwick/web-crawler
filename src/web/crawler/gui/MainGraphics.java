@@ -3,6 +3,8 @@ package web.crawler.gui;
 import errorreport.ErrorReport;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -11,8 +13,10 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
@@ -231,6 +235,29 @@ public class MainGraphics {
         infoPackagesList = new JList(listModel);
         infoPackagesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         infoPackagesList.setCellRenderer(new InfoPackageCellRenderer(quickInfo));
+        
+        JPopupMenu popup = new JPopupMenu();
+        JMenuItem remove = new JMenuItem("Remove");
+        remove.addActionListener(new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                listModel.removeElementAt(infoPackagesList.getSelectedIndex());
+            }
+        });
+        popup.add(remove);
+
+        // Add mouse listener to listen for clicks on the info packages list.
+        infoPackagesList.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if(e.getButton() == MouseEvent.BUTTON3 && listModel.size() > 0) {
+                    infoPackagesList.setSelectedIndex(infoPackagesList.locationToIndex(e.getPoint()));
+                    popup.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        });
 
         eastWest = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         eastWest.setLeftComponent(new JScrollPane(quickInfo));
