@@ -59,10 +59,11 @@ public class MainGraphics {
 
 
     /**
-     * Buttons to change the running state of the web crawler and to export the
-     * information contained in the information packages list.
+     * Buttons to change the running state of the web crawler, to export the
+     * information contained in the information packages list, and to clear the
+     * console area.
      */
-    private JButton start, stop, export;
+    private JButton start, stop, export, clearConsole;
 
 
     /**
@@ -199,13 +200,24 @@ public class MainGraphics {
                 }
             }
         });
+        
+        clearConsole = new JButton("Clear Console");
+        clearConsole.addActionListener(new AbstractAction() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                consoleArea.setText("");
+            }
+        });
 
         toolBar.add(start);
         toolBar.addSeparator();
         toolBar.add(stop);
         toolBar.addSeparator();
         toolBar.add(export);
-
+        toolBar.addSeparator();
+        toolBar.add(clearConsole);
+        
         windowPanel.add(toolBar, BorderLayout.PAGE_START);
     }
 
@@ -243,6 +255,7 @@ public class MainGraphics {
             @Override
             public void actionPerformed(ActionEvent e) {
                 listModel.removeElementAt(infoPackagesList.getSelectedIndex());
+                quickInfo.setText("");
             }
         });
         popup.add(remove);
